@@ -1,0 +1,67 @@
+:root {
+  --paper: #f4f6f5;
+  --ink: #1f2937;
+  --muted: #5b6770;
+  --line: #d3dbe0;
+  --surface: #ffffff;
+  --accent: #3547d9;
+  --accent-soft: #e6e9fc;
+  --ok: #2f9e6b;
+  --warn: #d9822b;
+  font-family: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink); }
+button, input { font: inherit; color: inherit; }
+
+.board { position: fixed; inset: 0; touch-action: none; user-select: none; -webkit-user-select: none; }
+
+.panel {
+  position: fixed; z-index: 10; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(31, 41, 55, 0.08);
+}
+
+.brand { top: 12px; left: 12px; display: flex; align-items: center; gap: 10px; padding: 6px 8px 6px 14px; }
+.brand strong { font-size: 15px; letter-spacing: 0.01em; }
+.room { color: var(--muted); font-size: 13px; }
+.status { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.status i { width: 8px; height: 8px; border-radius: 50%; background: var(--warn); }
+.status.connected i { background: var(--ok); }
+
+.roster { top: 12px; right: 12px; display: flex; align-items: center; padding: 6px 10px; }
+.avatar {
+  width: 28px; height: 28px; border-radius: 50%; color: #fff; font-size: 13px; font-weight: 600;
+  display: grid; place-items: center; border: 2px solid var(--surface); margin-left: -6px;
+}
+.avatar:first-child { margin-left: 0; }
+.avatar.self { outline: 2px solid var(--accent); outline-offset: 0; }
+
+.toolbar {
+  top: 12px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 4px; padding: 6px; max-width: calc(100vw - 24px); flex-wrap: wrap; justify-content: center;
+}
+.toolbar .sep { width: 1px; align-self: stretch; background: var(--line); margin: 2px 4px; }
+.btn {
+  border: 1px solid transparent; background: transparent; padding: 6px 10px; border-radius: 8px; cursor: pointer; font-size: 13px;
+}
+.btn:hover:not(:disabled) { background: #eef1f3; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+.btn[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.btn:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.toolbar input[type="color"] { width: 30px; height: 30px; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: none; cursor: pointer; }
+.toolbar label { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.toolbar input[type="range"] { width: 90px; accent-color: var(--accent); }
+
+.zoom { left: 12px; bottom: 12px; display: flex; align-items: center; padding: 4px; }
+.zoom span { min-width: 52px; text-align: center; font-size: 13px; font-variant-numeric: tabular-nums; }
+
+.banner { left: 50%; bottom: 14px; transform: translateX(-50%); padding: 8px 14px; font-size: 13px; color: #8a2d2d; }
+
+.note-editor {
+  position: absolute; z-index: 5; margin: 0; padding: 10px; border: 0; resize: none; outline: 2px solid var(--accent);
+  border-radius: 4px; font-size: 16px; line-height: 1; font-family: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  transform-origin: 0 0; overflow: hidden; user-select: text; -webkit-user-select: text;
+}
+
+@media (max-width: 960px) { .toolbar { top: 64px; } }

@@ -1,0 +1,29 @@
+import { useMemo } from 'react';
+import { BrowserRouter, Navigate, Route, Routes, useParams } from 'react-router-dom';
+import Whiteboard from './components/Whiteboard';
+import { uuid } from './utils';
+
+const ROOM_ID = /^[A-Za-z0-9_-]{1,64}$/;
+
+function NewBoard() {
+  const id = useMemo(() => uuid().slice(0, 8), []);
+  return <Navigate to={`/board/${id}`} replace />;
+}
+
+function BoardRoute() {
+  const { roomId } = useParams();
+  if (!roomId || !ROOM_ID.test(roomId)) return <Navigate to="/" replace />;
+  return <Whiteboard key={roomId} boardId={roomId} />;
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<NewBoard />} />
+        <Route path="/board/:roomId" element={<BoardRoute />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
