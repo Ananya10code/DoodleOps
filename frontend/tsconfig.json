@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
@@ -15,4 +16,11 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src", "vite.config.ts"]
+=======
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+>>>>>>> abdebd9583869536fbbcb39e4385065772fbe0f7
 }
